@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_flutter/Constant/pallete.dart';
+import 'package:instagram_clone_flutter/Screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Pallete.bgColor,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Pallete.bgColor,
+        ),
         useMaterial3: true,
       ),
-      home: Text('Instagram'),
+      home: const LoginScreen(),
     );
   }
 }
