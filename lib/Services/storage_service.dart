@@ -8,12 +8,9 @@ abstract class StorageService {
 }
 
 class StorageServiceImpl implements StorageService {
-  final FirebaseStorage _firebaseStorage;
-  final FirebaseAuth _firebaseAuth;
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  StorageServiceImpl(FirebaseStorage firebaseStorage, FirebaseAuth firebaseAuth)
-      : _firebaseAuth = firebaseAuth,
-        _firebaseStorage = firebaseStorage;
   @override
   Future<String> saveUserProfile(File file, String childName) async {
     Reference ref = _firebaseStorage

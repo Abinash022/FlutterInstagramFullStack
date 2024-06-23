@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:instagram_clone_flutter/Models/user_models.dart';
 import 'package:instagram_clone_flutter/Services/storage_service.dart';
 
@@ -10,7 +8,6 @@ abstract class AuthService {
   Future<void> signUpWithEmailAndPassword({
     required String email,
     required String username,
-    required String bio,
     required File photoURL,
     required String password,
   });
@@ -22,14 +19,10 @@ abstract class AuthService {
 }
 
 class AuthServiceImpl implements AuthService {
-  final FirebaseAuth _firebaseAuth;
-  final StorageService _storageService;
-  final FirebaseFirestore _firebaseFirestore;
-  AuthServiceImpl(FirebaseAuth firebaseAuth, StorageService storageService,
-      FirebaseFirestore firebaseFirestore)
-      : _firebaseAuth = firebaseAuth,
-        _storageService = storageService,
-        _firebaseFirestore = firebaseFirestore;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
   @override
   Future<void> signInWithEmailAndPassword(
       {required String email, required String password}) async {
@@ -51,7 +44,6 @@ class AuthServiceImpl implements AuthService {
   Future<void> signUpWithEmailAndPassword({
     required String email,
     required String username,
-    required String bio,
     required File photoURL,
     required String password,
   }) async {
@@ -62,13 +54,14 @@ class AuthServiceImpl implements AuthService {
           password: password,
         );
         final uid = credential.user!.uid;
-        final photoUrl = await _storageService.saveUserProfile(photoURL, '');
+        final photoUrl = await StorageServiceImpl()
+            .saveUserProfile(photoURL, 'profile Picature');
 
         UserModel userModel = UserModel(
           uid: uid,
           email: email,
           username: username,
-          bio: bio,
+          bio: '',
           photoURL: photoUrl,
           following: [],
           followers: [],
