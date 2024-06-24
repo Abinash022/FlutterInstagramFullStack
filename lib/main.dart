@@ -4,6 +4,8 @@ import 'package:instagram_clone_flutter/Constant/pallete.dart';
 import 'package:instagram_clone_flutter/Screens/feed_screen.dart';
 import 'package:instagram_clone_flutter/Screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:instagram_clone_flutter/Utils/snackbar.dart';
+import 'package:instagram_clone_flutter/Widgets/bottom_nav_bar.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -34,15 +36,7 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return SnackBar(
-              content: Text(
-                'An error occurred: ${snapshot.error}',
-                style: const TextStyle(
-                  color: Pallete.textColor,
-                ),
-              ),
-              backgroundColor: Pallete.bgColor,
-            );
+            return showSnackBar(context, 'Please Check your Connection!');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Scaffold(
@@ -52,7 +46,7 @@ class MyApp extends StatelessWidget {
             );
           }
           if (snapshot.hasData) {
-            return const FeedScreen();
+            return const BottomNavBar();
           }
           return const LoginScreen();
         },
