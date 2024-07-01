@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/Constant/pallete.dart';
-import 'package:instagram_clone_flutter/Screens/feed_screen.dart';
 import 'package:instagram_clone_flutter/Screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:instagram_clone_flutter/Utils/snackbar.dart';
 import 'package:instagram_clone_flutter/Widgets/bottom_nav_bar.dart';
+import 'package:instagram_clone_flutter/providers.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -14,7 +15,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => UserProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

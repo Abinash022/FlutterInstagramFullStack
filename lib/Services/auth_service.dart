@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:instagram_clone_flutter/Models/user_models.dart';
+import 'package:instagram_clone_flutter/Models/user_models.dart' as models;
 import 'package:instagram_clone_flutter/Services/storage_service.dart';
 
 abstract class AuthService {
@@ -16,6 +16,7 @@ abstract class AuthService {
     required String password,
   });
   Future<void> signOut();
+  Future<models.UserModel> getUserDetails();
 }
 
 class AuthServiceImpl implements AuthService {
@@ -57,7 +58,7 @@ class AuthServiceImpl implements AuthService {
         final photoUrl = await StorageServiceImpl()
             .saveUserProfile(photoURL, 'profile Picature');
 
-        UserModel userModel = UserModel(
+        models.UserModel userModel = models.UserModel(
           uid: uid,
           email: email,
           username: username,
@@ -80,5 +81,14 @@ class AuthServiceImpl implements AuthService {
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<models.UserModel> getUserDetails() async {
+    User user = _firebaseAuth.currentUser!;
+    DocumentSnapshot snapshot =
+        await _firebaseFirestore.collection('Users').doc(user.uid).get();
+
+    return models.UserModel.fromSnap(snapshot);
   }
 }

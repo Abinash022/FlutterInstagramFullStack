@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/Constant/pallete.dart';
+import 'package:instagram_clone_flutter/Screens/add_post_screen.dart';
 import 'package:instagram_clone_flutter/Screens/feed_screen.dart';
+import 'package:instagram_clone_flutter/Screens/search_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -14,12 +16,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final pages = [
     const FeedScreen(),
-    const Center(
-      child: Text('2nd '),
-    ),
-    const Center(
-      child: Text('3nd '),
-    ),
+    const SearchScreen(),
+    const AddPostScreen(),
     const Center(
       child: Text('4nd '),
     ),

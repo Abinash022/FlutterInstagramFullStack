@@ -19,20 +19,6 @@ class UserModel {
     required this.followers,
     required this.posts,
   });
-  static UserModel fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
-
-    return UserModel(
-      email: snapshot['email'],
-      username: snapshot['username'],
-      bio: snapshot['bio'],
-      photoURL: snapshot['photoURL'],
-      following: snapshot['following'],
-      followers: snapshot['followers'],
-      posts: snapshot['posts'],
-      uid: snapshot['uid'],
-    );
-  }
 
   Map<String, dynamic> toJson() => {
         "username": username,
@@ -44,4 +30,19 @@ class UserModel {
         "following": following,
         "posts": posts,
       };
+
+  static UserModel fromSnap(DocumentSnapshot snap) {
+    var snapshot = snap.data() as Map<String, dynamic>;
+
+    return UserModel(
+      email: snapshot['email'],
+      username: snapshot['username'],
+      bio: snapshot['bio'],
+      photoURL: snapshot['photoUrl'],
+      following: snapshot['following'],
+      followers: snapshot['followers'],
+      posts: snapshot['posts'],
+      uid: snapshot['uid'],
+    );
+  }
 }

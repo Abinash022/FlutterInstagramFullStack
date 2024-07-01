@@ -16,4 +16,15 @@ class PhotoPicker {
     }
     return null;
   }
+
+  Future<File?> pickPostImage() async {
+    final pickedImage = await imagePicker.pickImage(
+      source: imageSource,
+      imageQuality: imageQuality,
+    );
+    if (pickedImage != null) {
+      return File(pickedImage.path);
+    }
+    return null;
+  }
 }
