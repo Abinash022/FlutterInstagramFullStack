@@ -69,6 +69,7 @@ class FeedScreen extends StatelessWidget {
                 },
                 likeCount:
                     '${(snap['likes'] as List<dynamic>).length.toString()} likes',
+                commentPostId: snap['postId'],
               );
             },
             separatorBuilder: (context, index) => const SizedBox(

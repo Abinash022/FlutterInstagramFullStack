@@ -23,6 +23,14 @@ class _SearchScreenState extends State<SearchScreen> {
                         isGreaterThanOrEqualTo: _searchController.text)
                     .get(),
                 builder: (context, snapshot) {
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No users found',
+                        style: TextStyle(color: Pallete.textColor),
+                      ),
+                    );
+                  }
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
                       child: CircularProgressIndicator.adaptive(),

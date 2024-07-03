@@ -4,8 +4,14 @@ import '../Constant/pallete.dart';
 class CustomCommentTextField extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSubmit;
+  final String profileURL;
+  final String userName;
   const CustomCommentTextField(
-      {super.key, required this.controller, required this.onSubmit});
+      {super.key,
+      required this.controller,
+      required this.onSubmit,
+      required this.profileURL,
+      required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +29,9 @@ class CustomCommentTextField extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const CircleAvatar(
+                    icon: CircleAvatar(
                       backgroundColor: Pallete.textFieldFillColor,
-                      backgroundImage: NetworkImage(
-                          'https://www.hindustantimes.com/ht-img/img/2023/11/19/550x309/India-Cricket-WCup-362_1700416750896_1700416798373.jpg'),
+                      backgroundImage: NetworkImage(profileURL),
                     ),
                     onPressed: () {},
                   ),
@@ -38,9 +43,9 @@ class CustomCommentTextField extends StatelessWidget {
                       controller: controller,
                       autocorrect: false,
                       autofocus: false,
-                      decoration: const InputDecoration(
-                          hintText: "Add a Comment...",
-                          hintStyle: TextStyle(color: Colors.grey),
+                      decoration: InputDecoration(
+                          hintText: "Comment as $userName",
+                          hintStyle: const TextStyle(color: Colors.grey),
                           border: InputBorder.none),
                     ),
                   ),

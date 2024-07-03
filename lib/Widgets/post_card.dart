@@ -10,6 +10,7 @@ class PostCard extends StatelessWidget {
   final String postURL;
   final VoidCallback likePost;
   final String likeCount;
+  final String commentPostId;
 
   const PostCard({
     super.key,
@@ -19,6 +20,7 @@ class PostCard extends StatelessWidget {
     required this.postURL,
     required this.likePost,
     required this.likeCount,
+    required this.commentPostId,
   });
 
   @override
@@ -85,7 +87,9 @@ class PostCard extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const CommentScreen(),
+                        builder: (context) => CommentScreen(
+                          postId: commentPostId,
+                        ),
                       ));
                 },
                 icon: Image.asset(
@@ -116,7 +120,7 @@ class PostCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             likeCount,
-            style: TextStyle(
+            style: const TextStyle(
               color: Pallete.textColor,
               fontWeight: FontWeight.bold,
               fontSize: 13,
