@@ -54,15 +54,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           scale: 2,
         ),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new_sharp,
-            color: Pallete.textColor,
-          ),
-        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -149,9 +140,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const SizedBox(
             height: 25,
           ),
-          CustomElevatedButton(
-            text: 'Sign Up',
-            onPressed: registerUser,
+          SizedBox(
+            height: 50,
+            width: 370,
+            child: CustomElevatedButton(
+              text: 'Sign Up',
+              onPressed: registerUser,
+              buttonColor: Pallete.buttonColor,
+            ),
           ),
           const SizedBox(
             height: 35,
