@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/Constant/pallete.dart';
-
 import 'package:instagram_clone_flutter/Screens/add_post_screen.dart';
 import 'package:instagram_clone_flutter/Screens/feed_screen.dart';
 import 'package:instagram_clone_flutter/Screens/profile_screen.dart';
@@ -23,7 +23,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const Center(
       child: Text('4nd '),
     ),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {

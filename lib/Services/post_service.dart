@@ -34,6 +34,10 @@ abstract class PostService {
     required List likes,
     required String postId,
   });
+  Future<void> followUser({
+    required String uid,
+    required String followId,
+  });
 }
 
 class PostServiceImpl implements PostService {
@@ -153,5 +157,11 @@ class PostServiceImpl implements PostService {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  @override
+  Future<void> followUser({required String uid, required String followId}) {
+    // TODO: implement followUser
+    throw UnimplementedError();
   }
 }

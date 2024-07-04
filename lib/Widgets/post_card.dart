@@ -145,13 +145,32 @@ class PostCard extends StatelessWidget {
             ],
             style: const TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Pallete.textColor,
             ),
             moreStyle: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
+            ),
+          ),
+          const SizedBox(
+            height: 3,
+          ),
+          const Text(
+            'View all the Comments',
+            style: TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
+          ),
+          const Text(
+            'Dec 21, 2024',
+            style: const TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
             ),
           ),
         ],

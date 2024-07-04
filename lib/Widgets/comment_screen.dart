@@ -101,6 +101,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                       maxLines: 5,
                                       style: const TextStyle(
                                         color: Pallete.textColor,
+                                        fontSize: 13.5,
                                       ),
                                     ),
                                   ],

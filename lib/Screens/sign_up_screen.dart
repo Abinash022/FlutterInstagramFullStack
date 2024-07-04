@@ -1,15 +1,10 @@
 import 'dart:io';
 import 'dart:ui';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/Constant/pallete.dart';
 import 'package:instagram_clone_flutter/Screens/login_screen.dart';
 import 'package:instagram_clone_flutter/Services/auth_service.dart';
-import 'package:instagram_clone_flutter/Services/storage_service.dart';
 import 'package:instagram_clone_flutter/Utils/image_picker.dart';
 import 'package:instagram_clone_flutter/Widgets/custom_elevated_button.dart';
 import 'package:instagram_clone_flutter/Widgets/custom_text_field.dart';
