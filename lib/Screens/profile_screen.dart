@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/Constant/pallete.dart';
 import 'package:instagram_clone_flutter/Services/auth_service.dart';
+import 'package:instagram_clone_flutter/Services/post_service.dart';
 import 'package:instagram_clone_flutter/Widgets/custom_elevated_button.dart';
-import 'package:instagram_clone_flutter/providers.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  final String uid;
+  const ProfileScreen({super.key, required this.uid});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -18,6 +18,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int postLength = 0;
   int followers = 0;
   int following = 0;
+  bool isfollwing = false;
+  var userData = {};
 
   @override
   void initState() {
@@ -35,23 +37,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // fetch the followers and following
     final userSnap = await FirebaseFirestore.instance
         .collection('Users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(widget.uid)
         .get();
-
+    userData = userSnap.data()!;
     postLength = snap.docs.length;
     followers = userSnap.data()!['followers'].length;
     following = userSnap.data()!['following'].length;
+    isfollwing = userSnap
+        .data()!['following']
+        .contains(FirebaseAuth.instance.currentUser!.uid);
 
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          user.username,
+          userData['username'],
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -92,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 CircleAvatar(
                   backgroundColor: Pallete.textFieldFillColor,
                   backgroundImage: NetworkImage(
-                    user.photoURL,
+                    userData['photoUrl'],
                   ),
                   radius: 40,
                 ),
@@ -153,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 10,
             ),
             Text(
-              user.username,
+              userData['username'],
               style: const TextStyle(
                 color: Pallete.textColor,
                 fontWeight: FontWeight.bold,
@@ -169,35 +173,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 185,
-                  child: CustomElevatedButton(
-                    text: 'Edit Profile',
-                    onPressed: () {},
-                    buttonColor: Pallete.textFieldFillColor,
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                SizedBox(
-                  width: 185,
-                  child: CustomElevatedButton(
-                    text: 'Share Profile',
-                    onPressed: () {},
-                    buttonColor: Pallete.textFieldFillColor,
-                  ),
-                )
-              ],
-            ),
+            FirebaseAuth.instance.currentUser!.uid == widget.uid
+                ? Row(
+                    children: [
+                      SizedBox(
+                        width: 185,
+                        child: CustomElevatedButton(
+                          text: 'Edit Profile',
+                          onPressed: () {},
+                          buttonColor: Pallete.textFieldFillColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        width: 185,
+                        child: CustomElevatedButton(
+                          text: 'Share Profile',
+                          onPressed: () {},
+                          buttonColor: Pallete.textFieldFillColor,
+                        ),
+                      )
+                    ],
+                  )
+                : isfollwing
+                    ? SizedBox(
+                        width: 185,
+                        child: CustomElevatedButton(
+                            text: 'Unfollow',
+                            onPressed: () async {
+                              await PostServiceImpl().unFollowUser(
+                                uid: FirebaseAuth.instance.currentUser!.uid,
+                                targetUserId: userData['uid'],
+                              );
+                              setState(() {
+                                isfollwing = false;
+                                followers--;
+                              });
+                            },
+                            buttonColor: Pallete.textFieldFillColor),
+                      )
+                    : SizedBox(
+                        width: 185,
+                        child: CustomElevatedButton(
+                            text: 'Follow',
+                            onPressed: () async {
+                              await PostServiceImpl().followUser(
+                                uid: FirebaseAuth.instance.currentUser!.uid,
+                                targetUserId: userData['uid'],
+                              );
+                              setState(() {
+                                isfollwing = true;
+                                followers++;
+                              });
+                            },
+                            buttonColor: Pallete.followButtonColor),
+                      ),
             const Divider(),
             StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('Posts')
-                  .where('uid',
-                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .where('uid', isEqualTo: widget.uid)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone_flutter/Constant/pallete.dart';
+import 'package:instagram_clone_flutter/Screens/profile_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -83,18 +84,27 @@ class _SearchScreenState extends State<SearchScreen> {
                             height: 8,
                           ),
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor: Pallete.textFieldFillColor,
-                                radius: 25,
-                                backgroundImage: NetworkImage(
-                                    snapshot.data!.docs[index]['photoUrl']),
-                              ),
-                              title: Text(
-                                snapshot.data!.docs[index]['username'],
-                                style: const TextStyle(
-                                  color: Pallete.textColor,
-                                  fontWeight: FontWeight.bold,
+                            return InkWell(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfileScreen(
+                                      uid: snapshot.data!.docs[index]['uid'],
+                                    ),
+                                  )),
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor: Pallete.textFieldFillColor,
+                                  radius: 25,
+                                  backgroundImage: NetworkImage(
+                                      snapshot.data!.docs[index]['photoUrl']),
+                                ),
+                                title: Text(
+                                  snapshot.data!.docs[index]['username'],
+                                  style: const TextStyle(
+                                    color: Pallete.textColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             );

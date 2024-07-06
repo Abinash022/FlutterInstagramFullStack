@@ -34,9 +34,13 @@ abstract class PostService {
     required List likes,
     required String postId,
   });
+  Future<void> unFollowUser({
+    required String uid,
+    required String targetUserId,
+  });
   Future<void> followUser({
     required String uid,
-    required String followId,
+    required String targetUserId,
   });
 }
 
@@ -160,8 +164,50 @@ class PostServiceImpl implements PostService {
   }
 
   @override
-  Future<void> followUser({required String uid, required String followId}) {
-    // TODO: implement followUser
-    throw UnimplementedError();
+  Future<void> unFollowUser(
+      {required String uid, required String targetUserId}) async {
+    try {
+      DocumentSnapshot snapshot =
+          await _firebaseFirestore.collection('Users').doc(uid).get();
+
+      List following = (snapshot.data()! as dynamic)['following'];
+
+      if (following.contains(targetUserId)) {
+        await _firebaseFirestore.collection('Users').doc(targetUserId).update({
+          'followers': FieldValue.arrayRemove([uid]),
+        });
+
+        await _firebaseFirestore.collection('Users').doc(uid).update({
+          'following': FieldValue.arrayRemove([targetUserId]),
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
+  Future<void> followUser({
+    required String uid,
+    required String targetUserId,
+  }) async {
+    try {
+      DocumentSnapshot snapshot =
+          await _firebaseFirestore.collection('Users').doc(uid).get();
+
+      List following = (snapshot.data()! as dynamic)['following'];
+
+      if (!following.contains(targetUserId)) {
+        await _firebaseFirestore.collection('Users').doc(targetUserId).update({
+          'followers': FieldValue.arrayUnion([uid]),
+        });
+
+        await _firebaseFirestore.collection('Users').doc(uid).update({
+          'following': FieldValue.arrayUnion([targetUserId]),
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

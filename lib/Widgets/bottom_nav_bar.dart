@@ -23,7 +23,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const Center(
       child: Text('4nd '),
     ),
-    ProfileScreen(),
+    ProfileScreen(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    ),
   ];
   @override
   Widget build(BuildContext context) {
