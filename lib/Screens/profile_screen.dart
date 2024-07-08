@@ -28,26 +28,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getUserData() async {
-    // fetching the post length
-    final snap = await FirebaseFirestore.instance
-        .collection('Posts')
-        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .get();
+    try {
+      // Fetching the post length
+      final postSnap = await FirebaseFirestore.instance
+          .collection('Posts')
+          .where('uid', isEqualTo: widget.uid)
+          .get();
 
-    // fetch the followers and following
-    final userSnap = await FirebaseFirestore.instance
-        .collection('Users')
-        .doc(widget.uid)
-        .get();
-    userData = userSnap.data()!;
-    postLength = snap.docs.length;
-    followers = userSnap.data()!['followers'].length;
-    following = userSnap.data()!['following'].length;
-    isfollwing = userSnap
-        .data()!['following']
-        .contains(FirebaseAuth.instance.currentUser!.uid);
+      // Fetching the user data
+      final userSnap = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(widget.uid)
+          .get();
 
-    setState(() {});
+      if (userSnap.exists) {
+        userData = userSnap.data()!;
+        postLength = postSnap.docs.length;
+        followers = userData['followers'].length;
+        following = userData['following'].length;
+        isfollwing = userData['followers']
+            .contains(FirebaseAuth.instance.currentUser!.uid);
+
+        setState(() {});
+
+        print('User data fetched successfully');
+        print('isFollowing: $isfollwing');
+      } else {
+        print('User document does not exist');
+      }
+    } catch (e) {
+      print('Failed to fetch user data: $e');
+    }
+  }
+
+  followUser() async {
+    try {
+      await PostServiceImpl().followUser(
+        uid: FirebaseAuth.instance.currentUser!.uid,
+        targetUserId: userData['uid'],
+      );
+      setState(() {
+        isfollwing = true;
+        followers++;
+      });
+
+      print('User followed successfully');
+    } catch (e) {
+      print('Failed to follow user: $e');
+    }
+  }
+
+  unfollowUser() async {
+    try {
+      await PostServiceImpl().unFollowUser(
+        uid: FirebaseAuth.instance.currentUser!.uid,
+        targetUserId: userData['uid'],
+      );
+      setState(() {
+        isfollwing = false;
+        followers--;
+      });
+
+      print('User unfollowed successfully');
+    } catch (e) {
+      print('Failed to unfollow user: $e');
+    }
   }
 
   @override
@@ -198,37 +243,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   )
                 : isfollwing
-                    ? SizedBox(
-                        width: 185,
-                        child: CustomElevatedButton(
-                            text: 'Unfollow',
-                            onPressed: () async {
-                              await PostServiceImpl().unFollowUser(
-                                uid: FirebaseAuth.instance.currentUser!.uid,
-                                targetUserId: userData['uid'],
-                              );
-                              setState(() {
-                                isfollwing = false;
-                                followers--;
-                              });
-                            },
-                            buttonColor: Pallete.textFieldFillColor),
+                    ? Row(
+                        children: [
+                          SizedBox(
+                            width: 185,
+                            child: CustomElevatedButton(
+                                text: 'Unfollow',
+                                onPressed: () async {
+                                  await unfollowUser();
+                                },
+                                buttonColor: Pallete.textFieldFillColor),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: 185,
+                            child: CustomElevatedButton(
+                              text: 'Message',
+                              onPressed: () {},
+                              buttonColor: Pallete.textFieldFillColor,
+                            ),
+                          )
+                        ],
                       )
-                    : SizedBox(
-                        width: 185,
-                        child: CustomElevatedButton(
-                            text: 'Follow',
-                            onPressed: () async {
-                              await PostServiceImpl().followUser(
-                                uid: FirebaseAuth.instance.currentUser!.uid,
-                                targetUserId: userData['uid'],
-                              );
-                              setState(() {
-                                isfollwing = true;
-                                followers++;
-                              });
-                            },
-                            buttonColor: Pallete.followButtonColor),
+                    : Row(
+                        children: [
+                          SizedBox(
+                            width: 185,
+                            child: CustomElevatedButton(
+                                text: 'Follow',
+                                onPressed: () async {
+                                  await followUser();
+                                },
+                                buttonColor: Pallete.followButtonColor),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            width: 185,
+                            child: CustomElevatedButton(
+                              text: 'Message',
+                              onPressed: () {},
+                              buttonColor: Pallete.textFieldFillColor,
+                            ),
+                          ),
+                        ],
                       ),
             const Divider(),
             StreamBuilder(
