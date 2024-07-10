@@ -109,24 +109,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         centerTitle: false,
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.logout,
-              size: 30,
-            ),
-            color: Pallete.textColor,
-            onPressed: () async {
-              await AuthServiceImpl().signOut();
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.menu,
-              size: 30,
-            ),
-            color: Pallete.textColor,
-            onPressed: () {},
-          ),
+          FirebaseAuth.instance.currentUser!.uid == widget.uid
+              ? Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.logout,
+                        size: 30,
+                      ),
+                      color: Pallete.textColor,
+                      onPressed: () async {
+                        await AuthServiceImpl().signOut();
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.menu,
+                        size: 30,
+                      ),
+                      color: Pallete.textColor,
+                      onPressed: () {},
+                    ),
+                  ],
+                )
+              : IconButton(
+                  icon: const Icon(
+                    Icons.menu,
+                    size: 30,
+                  ),
+                  color: Pallete.textColor,
+                  onPressed: () {},
+                ),
         ],
       ),
       body: Padding(
