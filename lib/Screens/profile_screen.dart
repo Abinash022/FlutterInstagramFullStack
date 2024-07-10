@@ -221,10 +221,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
-              'Front-end, back-end, I speak the Code rythm.',
+            Text(
+              userData['bio'],
               maxLines: 5,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Pallete.textColor,
               ),
             ),

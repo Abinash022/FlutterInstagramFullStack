@@ -10,6 +10,7 @@ abstract class AuthService {
     required String username,
     required File photoURL,
     required String password,
+    required String bio,
   });
   Future<void> signInWithEmailAndPassword({
     required String email,
@@ -47,6 +48,7 @@ class AuthServiceImpl implements AuthService {
     required String username,
     required File photoURL,
     required String password,
+    required String bio,
   }) async {
     try {
       if (email.isNotEmpty && username.isNotEmpty && password.isNotEmpty) {
@@ -62,7 +64,7 @@ class AuthServiceImpl implements AuthService {
           uid: uid,
           email: email,
           username: username,
-          bio: '',
+          bio: bio,
           photoURL: photoUrl,
           following: [],
           followers: [],

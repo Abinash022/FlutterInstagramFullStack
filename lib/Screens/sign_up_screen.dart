@@ -21,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
 
   @override
   void dispose() {
@@ -36,6 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       username: usernameController.text.trim(),
       photoURL: _pickedProfileImage!,
       password: passwordController.text.trim(),
+      bio: bioController.text,
     );
   }
 
@@ -130,6 +132,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           CustomTextField(
             controller: usernameController,
             hintText: 'Enter your Username',
+            obscureText: false,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextField(
+            controller: bioController,
+            hintText: 'Enter the Bio',
             obscureText: false,
           ),
           const SizedBox(
