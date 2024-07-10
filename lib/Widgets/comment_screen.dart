@@ -66,6 +66,9 @@ class _CommentScreenState extends State<CommentScreen> {
                     bottom: 60.0), // Space for the text field
                 child: ListView.separated(
                   itemBuilder: (context, index) {
+                    final comment = snapshot.data!.docs[index];
+                    final bool isLiked =
+                        (comment['likes'] as List<dynamic>).contains(user.uid);
                     return Padding(
                       padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                       child: Column(
@@ -77,8 +80,8 @@ class _CommentScreenState extends State<CommentScreen> {
                               CircleAvatar(
                                 radius: 24,
                                 backgroundColor: Pallete.textFieldFillColor,
-                                backgroundImage: NetworkImage(snapshot
-                                    .data!.docs[index]['profilePicture']),
+                                backgroundImage:
+                                    NetworkImage(comment['profilePicture']),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 18.0),
@@ -96,8 +99,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                       height: 5,
                                     ),
                                     Text(
-                                      snapshot.data!.docs[index]
-                                          ['commentMessage'],
+                                      comment['commentMessage'],
                                       maxLines: 5,
                                       style: const TextStyle(
                                         color: Pallete.textColor,
@@ -112,19 +114,23 @@ class _CommentScreenState extends State<CommentScreen> {
                                 onPressed: () {
                                   PostServiceImpl().likeComment(
                                     uid: user.uid,
-                                    commentId: snapshot.data!.docs[index]
-                                        ['commentId'],
+                                    commentId: comment['commentId'],
                                     postId: widget.postId,
                                     likes: snapshot.data!.docs[index]['likes'],
                                   );
                                 },
-                                icon: const Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.grey,
-                                ),
+                                icon: isLiked
+                                    ? const Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        Icons.favorite_border,
+                                        color: Colors.grey,
+                                      ),
                               ),
                               Text(
-                                '${(snapshot.data!.docs[index]['likes'] as List<dynamic>).length.toString()} ',
+                                '${(comment['likes'] as List<dynamic>).length.toString()} ',
                                 style: const TextStyle(
                                   color: Pallete.textColor,
                                 ),
