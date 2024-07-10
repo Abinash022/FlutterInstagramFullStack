@@ -62,7 +62,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(
-              Icons.add_box_outlined,
+              Icons.add_box_sharp,
               size: 29.0,
               color: Pallete.bottomNavIconColor,
             ),

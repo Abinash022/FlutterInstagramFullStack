@@ -11,9 +11,11 @@ class PostCard extends StatelessWidget {
   final VoidCallback likePost;
   final String likeCount;
   final String commentPostId;
+  final bool isLiked;
 
   const PostCard({
     super.key,
+    required this.isLiked,
     required this.username,
     required this.postDecription,
     required this.photoURL,
@@ -76,11 +78,17 @@ class PostCard extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: likePost,
-                icon: const Icon(
-                  Icons.favorite_border,
-                  color: Pallete.textColor,
-                  size: 30,
-                ),
+                icon: isLiked
+                    ? const Icon(
+                        Icons.favorite_outlined,
+                        color: Colors.red,
+                        size: 30,
+                      )
+                    : const Icon(
+                        Icons.favorite_border,
+                        color: Pallete.textColor,
+                        size: 30,
+                      ),
               ),
               IconButton(
                 onPressed: () {

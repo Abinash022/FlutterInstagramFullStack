@@ -55,6 +55,8 @@ class FeedScreen extends StatelessWidget {
           return ListView.separated(
             itemBuilder: (context, index) {
               final snap = snapshot.data!.docs[index];
+              final bool isLiked =
+                  (snap['likes'] as List<dynamic>).contains(user.uid);
               return PostCard(
                 username: snap['username'],
                 postDecription:
@@ -71,6 +73,7 @@ class FeedScreen extends StatelessWidget {
                 likeCount:
                     '${(snap['likes'] as List<dynamic>).length.toString()} likes',
                 commentPostId: snap['postId'],
+                isLiked: isLiked,
               );
             },
             separatorBuilder: (context, index) => const SizedBox(
