@@ -173,14 +173,6 @@ class PostCard extends StatelessWidget {
               fontSize: 14,
             ),
           ),
-          const Text(
-            'Dec 21, 2024',
-            style: TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-            ),
-          ),
         ],
       ),
     );

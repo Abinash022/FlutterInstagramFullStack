@@ -81,7 +81,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               radius: 16,
               backgroundColor: Pallete.bottomNavIconColor,
               backgroundImage: NetworkImage(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2oakC7D0g1PxoMW2oAfnI5c8PzbwAeptomA&s'),
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Q82WISxpWPp5dHBTWHypFOZbRTvc0ST0xQ&s'),
             ),
             label: '',
           ),

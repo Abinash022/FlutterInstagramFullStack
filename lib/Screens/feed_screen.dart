@@ -40,48 +40,55 @@ class FeedScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Posts').snapshots(),
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.hasError) {
-            print('There is an Error');
-            return showSnackBar(context, 'Please try again later!');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          }
+      body: Column(
+        children: [
+          Expanded(
+            child: StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection('Posts').snapshots(),
+              builder: (context,
+                  AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                if (snapshot.hasError) {
+                  print('There is an Error');
+                  return showSnackBar(context, 'Please try again later!');
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
 
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              final snap = snapshot.data!.docs[index];
-              final bool isLiked =
-                  (snap['likes'] as List<dynamic>).contains(user.uid);
-              return PostCard(
-                username: snap['username'],
-                postDecription:
-                    '${snap['username']} ${snap['postDescription']}',
-                photoURL: snap['photoURL'],
-                postURL: snap['postURL'],
-                likePost: () {
-                  PostServiceImpl().likePost(
-                    uid: user.uid,
-                    postId: snap['postId'],
-                    likes: snap['likes'],
-                  );
-                },
-                likeCount:
-                    '${(snap['likes'] as List<dynamic>).length.toString()} likes',
-                commentPostId: snap['postId'],
-                isLiked: isLiked,
-              );
-            },
-            separatorBuilder: (context, index) => const SizedBox(
-              height: 10,
+                return ListView.separated(
+                  itemBuilder: (context, index) {
+                    final snap = snapshot.data!.docs[index];
+                    final bool isLiked =
+                        (snap['likes'] as List<dynamic>).contains(user.uid);
+                    return PostCard(
+                      username: snap['username'],
+                      postDecription:
+                          '${snap['username']} ${snap['postDescription']}',
+                      photoURL: snap['photoURL'],
+                      postURL: snap['postURL'],
+                      likePost: () {
+                        PostServiceImpl().likePost(
+                          uid: user.uid,
+                          postId: snap['postId'],
+                          likes: snap['likes'],
+                        );
+                      },
+                      likeCount:
+                          '${(snap['likes'] as List<dynamic>).length.toString()} likes',
+                      commentPostId: snap['postId'],
+                      isLiked: isLiked,
+                    );
+                  },
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 10,
+                  ),
+                  itemCount: snapshot.data!.docs.length,
+                );
+              },
             ),
-            itemCount: snapshot.data!.docs.length,
-          );
-        },
+          ),
+        ],
       ),
     );
   }
