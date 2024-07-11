@@ -14,7 +14,7 @@ This project replicates the core features of Instagram, allowing users to share 
  <img src="Assets/DemoImg/Screenshot_1720724074.png" alt="Sign Up Screen" width="200" />
 <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.37.44.png" alt="Feed Screen" width="200" />  
  <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.04.png" alt="Feed Screen" width="200" />
- <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.14.png" alt="Search Screen" width="200" />
+ 
  <p/>
 
 <p align = "center">
@@ -26,9 +26,13 @@ This project replicates the core features of Instagram, allowing users to share 
 
 <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.55.png" alt="User Profile" width="200"  />
 
-<img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.47.43.png" alt="Comment Screen" width="200"  />
-
 <p/>
+
+<p align = "center">
+<img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.14.png" alt="Search Screen" width="200" />
+<img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.47.43.png" alt="Comment Screen" width="200"  />
+<p/>
+
 
 
 
