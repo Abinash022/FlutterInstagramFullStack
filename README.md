@@ -10,38 +10,39 @@ This project replicates the core features of Instagram, allowing users to share 
 
 <div align="center">
   <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;"> <!-- Two columns, each taking 40% -->
       <img src="Assets/DemoImg/Screenshot_1720724067.png" alt="Sign In Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Screenshot_1720724074.png" alt="Sign Up Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.37.44.png" alt="Feed Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.04.png" alt="Feed Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.14.png" alt="Search Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.20.png" alt="Search Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.32.png" alt="other UserProfile Screen" width="100%" />
+    <div style="flex: 0 0 40%; padding: 5px;">
+      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.32.png" alt="Other UserProfile Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.50.png" alt="AddPost Screen" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.55.png" alt="User Profile" width="100%" />
     </div>
-    <div style="flex: 20%; padding: 5px;">
+    <div style="flex: 0 0 40%; padding: 5px;">
       <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.47.43.png" alt="Comment Screen" width="100%" />
     </div>
   </div>
 </div>
+
 
 
 
