@@ -9,39 +9,45 @@ This project replicates the core features of Instagram, allowing users to share 
 # Visual Representation 
 
 <div align="center">
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 40%; padding: 5px;"> <!-- Two columns, each taking 40% -->
-      <img src="Assets/DemoImg/Screenshot_1720724067.png" alt="Sign In Screen" width="100%" />
+  <!-- First row of screenshots -->
+  <div style="display: flex; justify-content: center;">
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.25.08.png" width="100%" alt="Onboarding Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Screenshot_1720724074.png" alt="Sign Up Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.25.52.png" width="100%" alt="Chat Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.37.44.png" alt="Feed Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.26.02.png" width="100%" alt="Status Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.04.png" alt="Feed Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.26.11.png" width="100%" alt="Call Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.14.png" alt="Search Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.25.08.png" width="100%" alt="Onboarding Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.20.png" alt="Search Screen" width="100%" />
+  </div>
+
+  <!-- Second row of screenshots -->
+  <div style="display: flex; justify-content: center;">
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.25.52.png" width="100%" alt="Chat Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.32.png" alt="Other UserProfile Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.26.02.png" width="100%" alt="Status Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.50.png" alt="AddPost Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.26.11.png" width="100%" alt="Call Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.38.55.png" alt="User Profile" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.25.08.png" width="100%" alt="Onboarding Screen"/>
     </div>
-    <div style="flex: 0 0 40%; padding: 5px;">
-      <img src="Assets/DemoImg/Simulator Screenshot - iPhone 15 - 2024-07-12 at 00.47.43.png" alt="Comment Screen" width="100%" />
+    <div style="flex: 0 0 200px; padding: 10px;">
+      <img src="Assets/Images/Simulator Screenshot - iPhone 15 - 2024-07-09 at 23.25.52.png" width="100%" alt="Chat Screen"/>
     </div>
   </div>
 </div>
+
 
 
 
